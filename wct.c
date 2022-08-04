@@ -4,6 +4,7 @@
 #include <dirent.h>
 #include <limits.h>
 #include <windows.h>
+#include <time.h>
 
 // exit command
 void clear(void);           // clear the screen
@@ -18,6 +19,7 @@ void mkDir(char substr[]);  // create directory
 void rm(char substr[]); // remove file or directory
 void banner(void);          // banner of WCT
 void textedit(void);        // open command line text editor
+void currentTime(void);			// show current time
 
 
 int main(void){
@@ -105,6 +107,11 @@ int main(void){
         else if(strcmp(str, "textedit") == 0){
             textedit();
         }
+		else if(strcmp(str, "time") == 0){
+			SetConsoleTextAttribute(fontColor, 6);
+			currentTime();
+			SetConsoleTextAttribute(fontColor, 7);
+		}
         else if(strcmp(str, "") == 0){
             continue;
         }
@@ -311,6 +318,13 @@ void textedit(void){
     printf(" * enjoy! */\n\n");
 }
 
+// time
+void currentTime(void){
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
+	printf("%d-%02d-%02d %02d:%02d:%02d\n\n",tm.tm_mday, tm.tm_mon + 1,tm.tm_year + 1900, tm.tm_hour, tm.tm_min, tm.tm_sec);
+}
+
 // help command
 void help(char substr[]){
     if(strcmp(substr, "") == 0){
@@ -326,6 +340,7 @@ void help(char substr[]){
         printf("pwd \t\t: display present working directory\n");
         printf("rm \t\t: remove file or directory\n");
         printf("textedit \t: open command line text editor\n");
+		printf("time \t\t: show current time\n");
 
         printf("\n");
     }
