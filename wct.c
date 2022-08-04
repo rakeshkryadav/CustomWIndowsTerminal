@@ -6,6 +6,11 @@
 #include <windows.h>
 #include <time.h>
 
+/*
+* Author - Rakesh Kumar Yadav
+* Version - v1.1
+*/
+
 // exit command
 void clear(void);           // clear the screen
 void cat(char fileName[]);  // cat command
@@ -20,7 +25,6 @@ void rm(char substr[]); // remove file or directory
 void banner(void);          // banner of WCT
 void textedit(void);        // open command line text editor
 void currentTime(void);			// show current time
-
 
 int main(void){
 
@@ -255,6 +259,7 @@ void pwd(void){
 void info(void){
     printf("Created by \t: Rakesh Kr Yadav\n");
     printf("Created on \t: 24/04/2022, 16:45:34\n");
+    printf("Version \t: v1.1 (update on 04/08/2022)\n");
     printf("System \t\t: Windows\n\n");
 }
 
