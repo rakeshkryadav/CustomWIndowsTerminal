@@ -1,4 +1,4 @@
-# CustomWIndowsTerminal
+# CustomWindowsTerminal
 A custom CMD which has some Linux terminal's features
 
 Custom Window Terminal or WCT is a simple cli application that uses some linux commands to perform some basic tasks.\
