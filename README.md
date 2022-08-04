@@ -14,7 +14,8 @@ ls              : show the list of file and directory\
 mkdir           : create directory\
 pwd             : display present working directory\
 rm              : remove file or directory\
-textedit        : open command line text editor (not currently work)
+textedit        : open command line text editor (not currently work)\
+time            : show current time
 
 ![](https://github.com/rakeshkryadav/CustomWIndowsTerminal/blob/main/wct01.png)
 ![](https://github.com/rakeshkryadav/CustomWIndowsTerminal/blob/main/wct02.png)
