@@ -23,8 +23,9 @@ void cd(char substr[]);     // change directory command
 void mkDir(char substr[]);  // create directory
 void rm(char substr[]); // remove file or directory
 void banner(void);          // banner of WCT
-void textedit(void);        // open command line text editor
+void textedit(char substr[]);        // open command line text editor
 void currentTime(void);			// show current time
+
 
 int main(void){
 
@@ -91,9 +92,16 @@ int main(void){
             printf("\t\t\t\t\t\tWindows Custom Terminal\n");
         }
         else if(strcmp(str, "help") == 0){
-            SetConsoleTextAttribute(fontColor, 5);
-            help(sub);
-            SetConsoleTextAttribute(fontColor, 7);
+			if(strcmp(sub, "") == 0){
+            	SetConsoleTextAttribute(fontColor, 5);
+            	help(sub);
+            	SetConsoleTextAttribute(fontColor, 7);
+			}
+			else{
+				SetConsoleTextAttribute(fontColor, 13);
+            	help(sub);
+            	SetConsoleTextAttribute(fontColor, 7);
+			}
         }
         else if(strcmp(str, "cd") == 0){
             cd(sub);
@@ -108,8 +116,8 @@ int main(void){
             rm(sub);
             SetConsoleTextAttribute(fontColor, 7);
         }
-        else if(strcmp(str, "textedit") == 0){
-            textedit();
+        else if(strcmp(str, "tedit") == 0){
+            textedit(sub);
         }
 		else if(strcmp(str, "time") == 0){
 			SetConsoleTextAttribute(fontColor, 6);
@@ -132,6 +140,14 @@ int main(void){
             sub[i] = '\0';
         }
     }
+}
+
+// information
+void info(void){
+    printf("Created by \t: Rakesh Kr Yadav\n");
+    printf("Created on \t: 24/04/2022, 16:45:34\n");
+    printf("Version \t: v1.11 (update on 06/08/2022)\n");
+    printf("System \t\t: Windows\n\n");
 }
 
 // clear command
@@ -255,14 +271,6 @@ void pwd(void){
     }
 }
 
-// information
-void info(void){
-    printf("Created by \t: Rakesh Kr Yadav\n");
-    printf("Created on \t: 24/04/2022, 16:45:34\n");
-    printf("Version \t: v1.1 (update on 04/08/2022)\n");
-    printf("System \t\t: Windows\n\n");
-}
-
 // change directory command
 void cd(char substr[]){
     if(strcmp(substr, "..") == 0){
@@ -310,17 +318,17 @@ void banner(void){
     printf("\n");
 }
 
-// textedit
-void textedit(void){
-    char fileName[32];
-    printf("enter file name : ");
-    gets(fileName);
-    //exception handling
-    clear();
-    printf("\t\t\t\t\t\tText Editor\n");
-    printf("/* your text should be here\n");
-    printf(" * write anything you like\n");
-    printf(" * enjoy! */\n\n");
+// texteditor
+void textedit(char substr[]){
+    if(strcmp(substr, "") == 0){
+		system("notepad");
+	}
+	else{
+		char str[] = "notepad ";
+		char string[64];
+		strcpy(string, strcat(str, substr));
+		system(string);
+	}
 }
 
 // time
@@ -344,7 +352,7 @@ void help(char substr[]){
         printf("mkdir \t\t: create directory\n");
         printf("pwd \t\t: display present working directory\n");
         printf("rm \t\t: remove file or directory\n");
-        printf("textedit \t: open command line text editor\n");
+        printf("tedit \t\t: open text editor\n");
 		printf("time \t\t: show current time\n");
 
         printf("\n");
@@ -385,6 +393,12 @@ void help(char substr[]){
         printf("discription\n----------------\n");
         printf("display the content of the file\n\n");
     }
+	else if(strcmp(substr, "tedit") == 0){
+		printf("command : tedit\n----------------\n");
+        printf("use : tedit [fileName]\n\n");
+        printf("discription\n----------------\n");
+        printf("open file in notepad text editor\n\n");
+	}
     else{
         printf("SORRY! no information available\n\n");
     }
